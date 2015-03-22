@@ -1,0 +1,58 @@
+BMI and You!
+========================================================
+author: Shashishekhar S
+date: 19/Mar/2015
+
+BMI?
+========================================================
+
+Body mass index (BMI) is a measure of body fat based on height and weight that applies to adult men and women.
+
+BMI Categories: 
+
+ - Underweight = <18.5
+ - Normal weight = 18.5–24.9 
+ - Overweight = 25–29.9 
+ - Obesity = BMI of 30 or greater
+
+This app helps you know your BMI. It also indicates if you are Underweight, Overweight, Obese or Normal.
+
+Your BMI in numbers ...
+========================================================
+
+Your results:
+
+weight:
+ [1] 75
+
+height:
+ [1] 1.7
+
+Your BMI is:
+ [1] 25.95156
+
+It means that you are:
+ [1] "overweight"
+
+Your BMI in a plot ...
+========================================================
+
+```{r, echo=FALSE}
+      require(utils)
+
+      ht <- seq(1.20, 2.15, length.out=1000)
+      wt <- seq(40, 135, length.out=1000)
+      wtht <- expand.grid(x=ht, y=wt)
+      bmi <- function(h,w) {(w)/(h*h)}
+      bmiwtht <- matrix(bmi(wtht$x, wtht$y),length(ht),length(wt))
+      
+      contour(ht,wt,bmiwtht,levels = c(18.5,25,30), drawlabels=FALSE, xlab="Height (metres)",ylab="Weight (kgs)", main="BMI and You!")
+      
+      points(1.5, 60, pch=15, col="#000000", cex=2)
+      text(1.5+0.06, 60, "Your BMI", col="#000000", cex=0.8)
+      
+      text(1.5, 75, "Obese", cex=1, srt=38, col="#ff0000")
+      text(1.6, 70,"Overweight",cex=1,srt=30, col="#8A0808")
+      text(1.6, 56,"Normal",cex=1,srt=20, col="#00AA00")
+      text(1.7, 46,"Underweight",cex=1,srt=18, col="#0000AA")
+```
